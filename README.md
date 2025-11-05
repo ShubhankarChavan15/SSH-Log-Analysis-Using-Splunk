@@ -55,5 +55,56 @@ Upload and validate your SSH logs.
 index=ssh_logs 
 | stats count by event_type
 
+🚨 Task 2: Analyze Failed Login Attempts
+
+Identify all failed login attempts:
+
+index=ssh_logs event_type="Failed SSH Login"
+| stats count by id.orig_h
+
+
+Highlight the top 10 source IPs generating failed logins.
+Create a bar chart visualization for failed login attempts per source IP.
+
+🔐 Task 3: Detect Multiple Failed Authentication Attempts (Brute Force)
+
+Search for multiple failed attempts in logs:
+
+index=ssh_logs event_type="Multiple Failed Authentication Attempts"
+| stats count by id.orig_h, id.resp_h
+
+
+Detect repeated failures (e.g., more than 5 attempts).
+Configure a Splunk alert:
+
+Trigger when any IP attempts more than 5 logins within 10 minutes.
+
+✅ Task 4: Track Successful Logins
+
+Search for successful logins:
+
+index=ssh_logs event_type="Successful SSH Login"
+| stats count by id.orig_h, id.resp_h
+
+
+Compare successful logins against prior failed attempts (to detect compromised accounts).
+Create a dashboard panel showing top source IPs for successful logins.
+
+🕵️‍♂️ Task 5: Spot Suspicious Connections Without Authentication
+
+Search for unauthenticated SSH connections:
+
+index=ssh_logs event_type="Connection Without Authentication"
+| stats count by id.orig_h
+
+
+Create a timechart visualization to monitor such events over time:
+
+index=ssh_logs event_type="Connection Without Authentication"
+| timechart count by id.orig_h
+
+
+Identify repeated unauthenticated attempts — potential indicators of port scanning or SSH probing.
+
 
 
