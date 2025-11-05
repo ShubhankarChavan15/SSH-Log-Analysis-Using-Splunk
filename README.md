@@ -125,6 +125,6 @@ Identify repeated unauthenticated attempts — potential indicators of port scan
 
 Here’s the complete dashboard showing all SSH threats:
 
-![SSH Dashboard]("screenshots/SSH_Dash.png")
+![SSH Dashboard](screenshots/SSH_Dash.png)
 
 
