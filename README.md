@@ -62,7 +62,7 @@ Identify all failed login attempts:
 ```spl
 index=ssh_logs event_type="Failed SSH Login"
 | stats count by id.orig_h
-
+```
 
 Highlight the top 10 source IPs generating failed logins.
 Create a bar chart visualization for failed login attempts per source IP.
